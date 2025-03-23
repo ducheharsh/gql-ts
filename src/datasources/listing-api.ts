@@ -1,5 +1,5 @@
 import { RESTDataSource } from "@apollo/datasource-rest";
-import { Amenities, Listing } from "../types";
+import { Amenities, CreateListingInput, CreateListingResponse, Listing } from "../types";
 
 export class ListingAPI extends RESTDataSource {
 
@@ -16,5 +16,13 @@ export class ListingAPI extends RESTDataSource {
     getAmenitiesById(id: string):Promise<Amenities[]> {
         console.log("Making a follow-up call for amenities with ", id);
         return this.get<Amenities[]>(`listings/${id}/amenities`)
+    }
+
+    createListing(listing: CreateListingInput):Promise<Listing>{
+        return this.post<Listing>("listings", {
+            body:{
+                listing
+            }
+        })
     }
 }

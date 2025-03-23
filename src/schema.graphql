@@ -32,3 +32,32 @@ type Amenities{
   name: String!
 }
 
+type Mutation{
+  "Create a new listing"
+  createListing(input: CreateListingInput!): CreateListingResponse!
+}
+
+type CreateListingResponse{
+  "HTTP Status Code"
+  code: Int!
+  "Success message"
+  success: Boolean!
+  "Human-readable message"
+  message: String!
+  "The newly created listing"
+  listing: Listing
+}
+
+input CreateListingInput{
+  "The title of the listing"
+  title: String!
+  "The description of the listing"
+  description: String!
+  "No. of beds in the listing"
+  numOfBeds: Int!
+  "The cost to book a night at the listing"
+  costPerNight: Float!
+  "is the listing currently available for booking"
+  amenities: [ID!]!
+}
+
